@@ -24,9 +24,12 @@ The application follows MVVM with a Repository and Use Case layer.
 
 Compose UI -> ViewModel -> Use Cases -> Repository -> Remote / Local Data Sources
 
+![App Architecture](data/architecture.png)
+
 ## Technologies
 
 - Kotlin
+- Used KSP instead for KAPT
 - Jetpack Compose (UI)
 - MVVM (Architecture)
 - Retrofit (Network call)

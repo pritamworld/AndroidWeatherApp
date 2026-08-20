@@ -92,6 +92,8 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
     debugImplementation(libs.androidx.compose.ui.tooling)
+
+    // Hardcoded dependency entries can be moved to .toml file
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.10.2")
     testImplementation("org.mockito:mockito-core:5.20.0")
     testImplementation("org.mockito.kotlin:mockito-kotlin:6.0.0")

@@ -55,9 +55,7 @@ class WeatherRepositoryImpl @Inject constructor(
 
             val location =
                 locations.firstOrNull()
-                    ?: return@withContext Result.failure(
-                        CityNotFoundException()
-                    )
+                    ?: return@withContext Result.failure(CityNotFoundException())
 
             // Get weather details
             val weather =
