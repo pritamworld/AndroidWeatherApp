@@ -14,17 +14,17 @@ Compose UI -> ViewModel -> Use Cases -> Repository -> Remote / Local Data Source
 ## Technologies
 
 - Kotlin
-- Jetpack Compose
-- MVVM
-- Retrofit
-- OkHttp
-- Kotlin Coroutines
+- Jetpack Compose (UI)
+- MVVM (Architecture)
+- Retrofit (Network call)
+- OkHttp (HTTP Client for Retrofit)
+- Kotlin Coroutines (Async)
 - Flow / StateFlow
-- Hilt
-- DataStore
-- Coil
+- Hilt (Dependency Injection)
+- DataStore (Local Data Storage)
+- Coil (Image loading)
 - Jetpack Navigation
-- JUnit
-- Mockito
+- JUnit (Testing)
+- Mockito (Testing)
 
 ## OpenWeather API
