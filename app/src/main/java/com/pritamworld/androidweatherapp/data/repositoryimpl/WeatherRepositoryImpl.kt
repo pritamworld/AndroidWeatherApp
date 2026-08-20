@@ -99,8 +99,7 @@ class WeatherRepositoryImpl @Inject constructor(
                     )
                 }
 
-                val response =
-                    weatherApi.getWeatherByCoordinates(
+                val response = weatherApi.getWeatherByCoordinates(
                         latitude = latitude,
                         longitude = longitude,
                         apiKey =
@@ -111,7 +110,6 @@ class WeatherRepositoryImpl @Inject constructor(
                 response.toDomain()
 
             } catch (exception: Exception) {
-
                 Result.failure(
                     mapException(exception)
                 )
@@ -119,14 +117,12 @@ class WeatherRepositoryImpl @Inject constructor(
         }
 
     override suspend fun getLastSearchedCity(): String? {
-
         return preferencesDataSource.getLastCity()
     }
 
     override suspend fun saveLastSearchedCity(
         city: String
     ) {
-
         preferencesDataSource.saveLastCity(city)
     }
 

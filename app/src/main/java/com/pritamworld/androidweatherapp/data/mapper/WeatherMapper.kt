@@ -28,31 +28,14 @@ fun WeatherResponse.toDomain(): Result<Weather> {
     return Result.success(
         Weather(
             city = cityName,
-
-            country =
-                sys?.country.orEmpty(),
-
-            temperature =
-                mainData.temp ?: 0.0,
-
-            feelsLike =
-                mainData.feelsLike ?: 0.0,
-
-            minTemperature =
-                mainData.tempMin ?: 0.0,
-
-            maxTemperature =
-                mainData.tempMax ?: 0.0,
-
-            humidity =
-                mainData.humidity ?: 0,
-
-            pressure =
-                mainData.pressure ?: 0,
-
-            windSpeed =
-                wind?.speed ?: 0.0,
-
+            country = sys?.country.orEmpty(),
+            temperature = mainData.temp ?: 0.0,
+            feelsLike = mainData.feelsLike ?: 0.0,
+            minTemperature = mainData.tempMin ?: 0.0,
+            maxTemperature = mainData.tempMax ?: 0.0,
+            humidity = mainData.humidity ?: 0,
+            pressure = mainData.pressure ?: 0,
+            windSpeed = wind?.speed ?: 0.0,
             description =
                 weatherData.description
                     ?.replaceFirstChar {
@@ -60,8 +43,7 @@ fun WeatherResponse.toDomain(): Result<Weather> {
                     }
                     .orEmpty(),
 
-            iconCode =
-                weatherData.icon.orEmpty()
+            iconCode = weatherData.icon.orEmpty()
         )
     )
 }

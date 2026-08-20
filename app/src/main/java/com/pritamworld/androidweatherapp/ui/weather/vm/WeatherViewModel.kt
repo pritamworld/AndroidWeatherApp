@@ -23,9 +23,7 @@ class WeatherViewModel @Inject constructor(
     private val locationProvider: LocationProvider
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow<WeatherUiState>(
-            WeatherUiState.Loading
-        )
+    private val _uiState = MutableStateFlow<WeatherUiState>(WeatherUiState.Loading)
 
     val uiState: StateFlow<WeatherUiState> = _uiState.asStateFlow()
 
@@ -39,10 +37,10 @@ class WeatherViewModel @Inject constructor(
 
         viewModelScope.launch {
 
+            // Get last searched city
             val lastCity = getLastSearchedCityUseCase()
 
             if (!lastCity.isNullOrBlank()) {
-
                 lastSearch = lastCity
 
                 searchWeather(
@@ -51,9 +49,7 @@ class WeatherViewModel @Inject constructor(
                 )
 
             } else {
-
-                _uiState.value =
-                    WeatherUiState.Empty
+                _uiState.value = WeatherUiState.Empty
             }
         }
     }
@@ -64,20 +60,21 @@ class WeatherViewModel @Inject constructor(
 
         when (event) {
 
+            // User entered city in search box
             is WeatherUiEvent.Search -> {
-
                 searchWeather(
                     event.city
                 )
             }
 
+            // Get current device location
             WeatherUiEvent.CurrentLocation -> {
-
                 loadCurrentLocation()
             }
 
-            WeatherUiEvent.Retry -> {
 
+            // if not device location ON then use last search city
+            WeatherUiEvent.Retry -> {
                 lastSearch?.let {
                     searchWeather(it)
                 } ?: initialize()
@@ -93,46 +90,37 @@ class WeatherViewModel @Inject constructor(
         viewModelScope.launch {
 
             if (showLoading) {
-
-                _uiState.value =
-                    WeatherUiState.Loading
+                _uiState.value = WeatherUiState.Loading
             }
 
-            val result =
-                searchWeatherUseCase(city)
+            val result = searchWeatherUseCase(city)
 
             result
                 .onSuccess { weather ->
 
-                    lastSearch =
-                        weather.city
+                    lastSearch = weather.city
 
-                    _uiState.value =
-                        WeatherUiState.Success(
-                            weather
-                        )
+                    _uiState.value = WeatherUiState.Success(weather)
                 }
                 .onFailure { exception ->
 
                     _uiState.value =
                         WeatherUiState.Error(
                             exception.message
-                                ?: "Unable to load weather"
+                                ?: "Unable to load weather details"
                         )
                 }
         }
     }
 
+    // Load current location from device
     private fun loadCurrentLocation() {
 
         viewModelScope.launch {
 
-            _uiState.value =
-                WeatherUiState.Loading
+            _uiState.value = WeatherUiState.Loading
 
-            val locationResult =
-                locationProvider
-                    .getCurrentLocation()
+            val locationResult = locationProvider.getCurrentLocation()
 
             locationResult
                 .onSuccess { location ->
@@ -162,7 +150,7 @@ class WeatherViewModel @Inject constructor(
                             _uiState.value =
                                 WeatherUiState.Error(
                                     exception.message
-                                        ?: "Unable to load weather"
+                                        ?: "Unable to load weather details"
                                 )
                         }
                 }
@@ -171,7 +159,7 @@ class WeatherViewModel @Inject constructor(
                     _uiState.value =
                         WeatherUiState.Error(
                             exception.message
-                                ?: "Unable to determine location"
+                                ?: "Unable to determine location details"
                         )
                 }
         }

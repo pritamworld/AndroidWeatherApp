@@ -3,7 +3,8 @@
 A native Android weather application built using Kotlin and MVVM Android architecture.
 
 ## Features
-
+- Display weather info of last search city if current location not available to permission to access device location is OFF.
+- 
 
 ## Architecture
 
