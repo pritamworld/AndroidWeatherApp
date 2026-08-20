@@ -32,10 +32,11 @@ Compose UI -> ViewModel -> Use Cases -> Repository -> Remote / Local Data Source
 - Used KSP instead for KAPT
 - Jetpack Compose (UI)
 - MVVM (Architecture)
-- Retrofit (Network call)
+- Retrofit (Network call) and Gson
+- Android Fused Location Provider (Location)
 - OkHttp (HTTP Client for Retrofit)
 - Kotlin Coroutines (Async)
-- Flow / StateFlow
+- Flow / StateFlow (Concurrency)
 - Hilt (Dependency Injection)
 - DataStore (Local Data Storage)
 - Coil (Image loading)

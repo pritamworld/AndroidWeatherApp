@@ -5,6 +5,7 @@ import retrofit2.http.Query
 
 interface GeocodingApi {
 
+    // http://api.openweathermap.org/geo/1.0/direct?q=new%20york&limit=2&appid=<YOUR API KEY>
     @GET("geo/1.0/direct")
     suspend fun getCoordinates(
 
