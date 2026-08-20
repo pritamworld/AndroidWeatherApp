@@ -12,9 +12,7 @@ class PreferencesDataSource @Inject constructor(
 ) {
 
     companion object {
-
-        private val LAST_CITY =
-            stringPreferencesKey("last_searched_city")
+        private val LAST_CITY = stringPreferencesKey("last_searched_city")
     }
 
     suspend fun saveLastCity(
@@ -22,7 +20,6 @@ class PreferencesDataSource @Inject constructor(
     ) {
 
         dataStore.edit { preferences ->
-
             preferences[LAST_CITY] = city
         }
     }

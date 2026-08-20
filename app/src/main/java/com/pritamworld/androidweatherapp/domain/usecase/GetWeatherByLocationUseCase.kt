@@ -12,7 +12,6 @@ class GetWeatherByLocationUseCase @Inject constructor(
         latitude: Double,
         longitude: Double
     ): Result<Weather> {
-
         return repository.getWeatherByCoordinates(
             latitude = latitude,
             longitude = longitude

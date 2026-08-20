@@ -98,12 +98,12 @@ class WeatherRepositoryImpl @Inject constructor(
                 }
 
                 val response = weatherApi.getWeatherByCoordinates(
-                        latitude = latitude,
-                        longitude = longitude,
-                        apiKey =
-                            BuildConfig.OPEN_WEATHER_API_KEY,
-                        units = Constants.UNITS
-                    )
+                    latitude = latitude,
+                    longitude = longitude,
+                    apiKey =
+                        BuildConfig.OPEN_WEATHER_API_KEY,
+                    units = Constants.UNITS
+                )
 
                 response.toDomain()
 
@@ -136,18 +136,10 @@ class WeatherRepositoryImpl @Inject constructor(
             is HttpException -> {
 
                 when (exception.code()) {
-
-                    401 ->
-                        UnauthorizedException()
-
-                    404 ->
-                        CityNotFoundException()
-
-                    429 ->
-                        RateLimitException()
-
-                    else ->
-                        ServerException()
+                    401 -> UnauthorizedException()
+                    404 -> CityNotFoundException()
+                    429 -> RateLimitException()
+                    else -> ServerException()
                 }
             }
 

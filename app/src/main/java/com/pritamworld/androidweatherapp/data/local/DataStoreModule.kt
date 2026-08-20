@@ -25,7 +25,7 @@ object DataStoreModule {
         return PreferenceDataStoreFactory.create {
             File(
                 context.filesDir,
-                "weather_preferences.preferences_pb"
+                "weather_preferences.preferences_pb" //Google's Protocol Buffers (Protobuf)
             )
         }
     }

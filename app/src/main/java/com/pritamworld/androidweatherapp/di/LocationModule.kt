@@ -23,15 +23,10 @@ abstract class LocationModule {
     ): LocationProvider
 
     companion object {
-
         @Provides
         @Singleton
         fun provideFusedLocationClient(
             @ApplicationContext context: Context
-        ) =
-            LocationServices
-                .getFusedLocationProviderClient(
-                    context
-                )
+        ) = LocationServices.getFusedLocationProviderClient(context)
     }
 }

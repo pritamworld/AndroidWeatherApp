@@ -9,7 +9,6 @@ class GetLastSearchedCityUseCase @Inject constructor(
 ) {
 
     suspend operator fun invoke(): String? {
-
         return repository.getLastSearchedCity()
     }
 }

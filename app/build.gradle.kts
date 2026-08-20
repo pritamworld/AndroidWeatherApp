@@ -5,7 +5,7 @@ plugins {
     alias(libs.plugins.hilt)
 }
 
-import java.util.Properties
+import java . util . Properties
 
 val localProperties = Properties()
 
@@ -42,8 +42,7 @@ android {
             useSupportLibrary = true
         }
 
-        buildConfigField("String", "OPEN_WEATHER_API_KEY", "\"$openWeatherApiKey\""
-        )
+        buildConfigField("String", "OPEN_WEATHER_API_KEY", "\"$openWeatherApiKey\"")
     }
 
     buildTypes {
