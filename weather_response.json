@@ -1,0 +1,46 @@
+{
+  coord: {
+    lon: 10.99,
+    lat: 44.34
+  },
+  weather: [
+    {
+      id: 800,
+      main: "Clear",
+      description: "clear sky",
+      icon: "01n"
+    }
+  ],
+  base: "stations",
+  main: {
+    temp: 292.18,
+    feels_like: 292.2,
+    temp_min: 292.18,
+    temp_max: 293.82,
+    pressure: 1013,
+    humidity: 79,
+    sea_level: 1013,
+    grnd_level: 947
+  },
+  visibility: 10000,
+  wind: {
+    speed: 3.95,
+    deg: 202,
+    gust: 6.67
+  },
+  clouds: {
+    all: 0
+  },
+  dt: 1787188008,
+  sys: {
+    type: 2,
+    id: 2044440,
+    country: "IT",
+    sunrise: 1787199888,
+    sunset: 1787249671
+  },
+  timezone: 7200,
+  id: 3163858,
+  name: "Zocca",
+  cod: 200
+}
