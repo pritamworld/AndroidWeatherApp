@@ -1,6 +1,7 @@
 package com.pritamworld.androidweatherapp.data.remote
 
 
+import com.pritamworld.androidweatherapp.BuildConfig
 import com.pritamworld.androidweatherapp.utils.Constants
 import dagger.Module
 import dagger.Provides
@@ -24,7 +25,7 @@ object NetworkModule {
         return HttpLoggingInterceptor().apply {
 
             level =
-                if (com.pritamworld.androidweatherapp.BuildConfig.DEBUG) {
+                if (BuildConfig.DEBUG) {
                     HttpLoggingInterceptor.Level.BODY
                 } else {
                     HttpLoggingInterceptor.Level.NONE

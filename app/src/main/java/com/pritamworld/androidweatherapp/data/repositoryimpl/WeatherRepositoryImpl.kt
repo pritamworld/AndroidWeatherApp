@@ -20,11 +20,9 @@ class WeatherRepositoryImpl @Inject constructor(
     private val geocodingApi: GeocodingApi,
     private val preferencesDataSource: PreferencesDataSource
 ) : WeatherRepository {
-
     override suspend fun searchWeather(
         city: String
     ): Result<Weather> = withContext(Dispatchers.IO) {
-
         try {
 
             val cleanCity = city.trim()
@@ -47,12 +45,12 @@ class WeatherRepositoryImpl @Inject constructor(
                 )
             }
 
+            // Geo encoding for city name
             val locations =
                 geocodingApi.getCoordinates(
                     city = "$cleanCity,${Constants.DEFAULT_COUNTRY_CODE}",
                     limit = 5,
-                    apiKey =
-                        BuildConfig.OPEN_WEATHER_API_KEY
+                    apiKey = BuildConfig.OPEN_WEATHER_API_KEY
                 )
 
             val location =
@@ -61,32 +59,26 @@ class WeatherRepositoryImpl @Inject constructor(
                         CityNotFoundException()
                     )
 
+            // Get weather details
             val weather =
                 weatherApi.getWeatherByCoordinates(
                     latitude = location.latitude,
                     longitude = location.longitude,
-                    apiKey =
-                        BuildConfig.OPEN_WEATHER_API_KEY,
+                    apiKey = BuildConfig.OPEN_WEATHER_API_KEY,
                     units = Constants.UNITS
                 )
 
-            val result =
-                weather.toDomain()
+            val result = weather.toDomain()
 
+            // Save to local storage
             if (result.isSuccess) {
-
-                saveLastSearchedCity(
-                    weather.name ?: cleanCity
-                )
+                saveLastSearchedCity(weather.name ?: cleanCity)
             }
 
             result
 
         } catch (exception: Exception) {
-
-            Result.failure(
-                mapException(exception)
-            )
+            Result.failure(mapException(exception))
         }
     }
 
