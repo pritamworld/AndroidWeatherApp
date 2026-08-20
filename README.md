@@ -95,4 +95,4 @@ Then:
 ![New York US](data/2.png)
 ![New York US](data/3.png)
 
-[![Recording]](data/sr1.webm)
+[![Recording](data/1.png)](data/sr1.webm)
