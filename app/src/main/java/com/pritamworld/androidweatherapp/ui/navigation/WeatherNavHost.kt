@@ -26,7 +26,7 @@ fun WeatherNavHost() {
         composable(
             route = Routes.WEATHER
         ) {
-            val viewModel: WeatherViewModel = hiltViewModel()
+            val viewModel: WeatherViewModel = hiltViewModel() // TODO remove hiltViewModel()
             WeatherScreen(viewModel = viewModel)
         }
     }

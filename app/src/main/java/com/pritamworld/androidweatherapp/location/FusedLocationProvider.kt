@@ -14,20 +14,20 @@ import kotlin.coroutines.resume
 class FusedLocationProvider @Inject constructor(
     @ApplicationContext
     private val context: Context,
-
     private val fusedLocationClient:
     FusedLocationProviderClient
 ) : LocationProvider {
 
     @SuppressLint("MissingPermission")
-    override suspend fun getCurrentLocation():
-            Result<UserLocation> {
+    override suspend fun getCurrentLocation(): Result<UserLocation> {
 
+        // Get current location service from device
         val locationManager =
             context.getSystemService(
                 Context.LOCATION_SERVICE
             ) as LocationManager
 
+        // Check which location provider is enabled
         val locationEnabled =
             locationManager.isProviderEnabled(
                 LocationManager.GPS_PROVIDER
@@ -50,9 +50,10 @@ class FusedLocationProvider @Inject constructor(
             val cancellationTokenSource =
                 CancellationTokenSource()
 
+            // Get current location
             fusedLocationClient
                 .getCurrentLocation(
-                    Priority.PRIORITY_BALANCED_POWER_ACCURACY,
+                    Priority.PRIORITY_BALANCED_POWER_ACCURACY, // Less device battery usage
                     cancellationTokenSource.token
                 )
                 .addOnSuccessListener { location ->
@@ -62,11 +63,8 @@ class FusedLocationProvider @Inject constructor(
                         continuation.resume(
                             Result.success(
                                 UserLocation(
-                                    latitude =
-                                        location.latitude,
-
-                                    longitude =
-                                        location.longitude
+                                    latitude = location.latitude,
+                                    longitude = location.longitude
                                 )
                             )
                         )

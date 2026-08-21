@@ -29,19 +29,13 @@ class WeatherRepositoryImpl @Inject constructor(
 
             if (cleanCity.isBlank()) {
 
-                return@withContext Result.failure(
-                    IllegalArgumentException(
-                        "Please enter a city"
-                    )
+                return@withContext Result.failure(IllegalArgumentException("Please enter a city")
                 )
             }
 
             if (BuildConfig.OPEN_WEATHER_API_KEY.isBlank()) {
 
-                return@withContext Result.failure(
-                    IllegalStateException(
-                        "OpenWeather API key is not configured"
-                    )
+                return@withContext Result.failure(IllegalStateException("OpenWeather API key is not configured")
                 )
             }
 
@@ -89,19 +83,14 @@ class WeatherRepositoryImpl @Inject constructor(
             try {
 
                 if (BuildConfig.OPEN_WEATHER_API_KEY.isBlank()) {
-
-                    return@withContext Result.failure(
-                        IllegalStateException(
-                            "OpenWeather API key is not configured"
-                        )
+                    return@withContext Result.failure(IllegalStateException("OpenWeather API key is not configured")
                     )
                 }
 
                 val response = weatherApi.getWeatherByCoordinates(
                     latitude = latitude,
                     longitude = longitude,
-                    apiKey =
-                        BuildConfig.OPEN_WEATHER_API_KEY,
+                    apiKey = BuildConfig.OPEN_WEATHER_API_KEY,
                     units = Constants.UNITS
                 )
 
@@ -130,8 +119,7 @@ class WeatherRepositoryImpl @Inject constructor(
 
         return when (exception) {
 
-            is IOException ->
-                NetworkException()
+            is IOException -> NetworkException()
 
             is HttpException -> {
 
@@ -143,27 +131,17 @@ class WeatherRepositoryImpl @Inject constructor(
                 }
             }
 
-            else ->
-                exception
+            else -> exception
         }
     }
 }
 
-class CityNotFoundException :
-    Exception("City not found")
+class CityNotFoundException : Exception("City not found")
 
-class NetworkException :
-    Exception("Please check your internet connection")
+class NetworkException : Exception("Please check your internet connection")
 
-class UnauthorizedException :
-    Exception("Weather API authorization failed")
+class UnauthorizedException : Exception("Weather API authorization failed")
 
-class RateLimitException :
-    Exception(
-        "Too many requests. Please try again later"
-    )
+class RateLimitException : Exception("Too many requests. Please try again later")
 
-class ServerException :
-    Exception(
-        "Weather service is temporarily unavailable"
-    )
+class ServerException : Exception("Weather service is temporarily unavailable")

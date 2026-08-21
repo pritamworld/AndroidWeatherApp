@@ -124,43 +124,25 @@ class WeatherViewModel @Inject constructor(
 
             locationResult
                 .onSuccess { location ->
-
                     val weatherResult =
                         getWeatherByLocationUseCase(
-                            latitude =
-                                location.latitude,
-
-                            longitude =
-                                location.longitude
+                            latitude = location.latitude,
+                            longitude = location.longitude
                         )
 
                     weatherResult
                         .onSuccess { weather ->
-
-                            lastSearch =
-                                weather.city
-
-                            _uiState.value =
-                                WeatherUiState.Success(
-                                    weather
-                                )
+                            lastSearch = weather.city
+                            _uiState.value = WeatherUiState.Success(weather)
                         }
                         .onFailure { exception ->
-
                             _uiState.value =
-                                WeatherUiState.Error(
-                                    exception.message
-                                        ?: "Unable to load weather details"
-                                )
+                                WeatherUiState.Error(exception.message ?: "Unable to load weather details")
                         }
                 }
                 .onFailure { exception ->
-
                     _uiState.value =
-                        WeatherUiState.Error(
-                            exception.message
-                                ?: "Unable to determine location details"
-                        )
+                        WeatherUiState.Error(exception.message ?: "Unable to determine location details")
                 }
         }
     }
