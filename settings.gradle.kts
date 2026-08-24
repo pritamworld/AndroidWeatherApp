@@ -24,4 +24,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "AndroidWeatherApp"
 include(":app")
- 
+include(":benchmark")
